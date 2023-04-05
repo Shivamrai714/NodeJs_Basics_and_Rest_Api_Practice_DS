@@ -1,0 +1,51 @@
+-create the project
+=> npm init
+
+-install packages like  express , 
+=>npm install express nodemon body-parser dotenv mongoose
+
+Run the project using npm start app.js  or configure the nodemon in "scripts" to automatically fetch the changes in the file app.js
+
+Then open the teminal in current project and one time do "npm start"   , next time it will fetch changes and run automatically
+
+=>Now we are going to use express to create the server (previous done by http in node.js )
+
+Basically creating another folder routes to manage routes. Import the modules of express, router , etc.
+
+router.get("/" , (request , response ) =>{
+    response.send("Your Routing is working good ")
+});
+
+
+-Also in main app.js file we can use these routes by importing their modules/packages.
+app.use("/api/v1/courses/" , coursesRouter)
+
+
+
+-Installing Thunder client extension , its just like the post Man to make request to the apis (apis are the url which perform some CRUD operations )
+
+
+-Now creating the configuration file to keep all the constant together . " .env " and give the port number there.
+import this first.
+require("dotenv").config()
+-then use the constants  by "process.env.PORT"
+
+-Download the Offline Mongo DB as online is not working currently. in Nodejs (Refer mongo Db in one Video to download )
+
+-Now i have dowload the Version 6 , so its does not have mongo.exe file , so just download lower version of 5.0.5 .Again and install it. 
+
+(Otherwise temporary solution is to get CompassApp and mongosh shell ) and use it .
+
+
+-Now to Connect the DB MongoDB locally  . We have use the url like this in .env
+
+
+-Now crating model to store the data .
+
+{
+  "title":"JAva",
+  "content":"Good Language",
+  "videos":500,
+  "active":true
+  
+}

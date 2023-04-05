@@ -1,0 +1,211 @@
+
+
+
+
+- Java Script is a client side scripting language . It is initallly executed in browesers only (eg in chrome  V8 Engine) executes the js.
+- But node is runtime environment that made it  to run js outside the browser (or also allow js to run on server/outer world  ) 
+-Node js uses asynchrounous programming.(ie multiple request can be serverd at time , and also io will not be blocked for single request )
+
+Asynchrounous simpliy means that  the process will be continued in the background for definite time and after completion pushed back to main stream and during this time duration resouces will not be blocked and can be used for serving the other requests .
+
+-Hence Js will help of libraries can do following work
+ -as server side language.
+ -as doing CRUD opeation with database
+ -File operations
+
+-Install the Nodejs 
+1.Download windows installer for Node.js (.msi file LTS version 18) and install it
+2.Open cmd :  node -v
+3.Now we can work in two way to execute js in node
+ 1.REPEL (directly on cmd line by line , single line execution)
+ 2.Making full file and then execute.
+
+=.For repel(read write and evaluate mode ) , cmd node 
+  - let a =5 
+  -typeof(a)
+
+=.Now using Vs code for the making full file and executing it .
+
+4.Now open the node folder and make files and do programming.
+ -Make a file  first.js and then run it using 
+"node first.js"
+
+5.Install the extension Code runner  to excute code using run button.
+6.Libraries are already written code, we just need to use them 
+ eg  http , os , fs  , express , nodemon , url , etc   are some modules. 
+
+-we need to use like this
+
+const variable = require("http")
+
+7.How to make server with predefined http module ( second_http.js )
+
+8. Make our own module and then export it. (third_mymodule.js ) And then we can use this module in other file , by using the require()
+      
+9.using the read write module . fourth_file.js
+
+-The readOperation has 2 methods 
+  - readFile( 'abc.txt' , ()=> {} )    //This is defauly work in asynchrounous manner , ie it will not block the next lines of code and will continue to work in background and once fininshed then callback function of it is excuted 
+  - readFileSync ('abc.txt')           //This block the further request till current is not proceed.
+
+refer the usage by the fs module to perform all the read ,write ,append  , delete file operations.
+
+10.How to use the url module.
+
+-Crate fifth_url_module.js and        // make server and send the url
+
+-After making the file , go to browser and make the url requests to see the results.
+ We collect the data from url using the parse.
+ 
+http://localhost:9686/?name="Shivam"&city="bhopal"
+
+const http = require("http");
+const url = require("url");
+
+http
+    .createServer( (request , response ) =>{ 
+
+         console.log(request.url);
+
+         const urlObj = url.parse(request.url,true);
+         console.log(urlObj)
+
+     } )
+     .listen(9686);
+
+
+
+
+11. We are making a simple static project, ie reading from the static files and then serving that content to the response of the server to show to client.
+
+To make dynamic website , we need to use the express.js for the development.
+
+12.Project 2 :   Node packet manager (npm):  used to download the packages 
+
+- Make a new folder project 2:
+
+just like in python we use pip install flask etc  ,  here we use npm in node .
+
+-Just go inside the project2 folder and then install express.
+
+"npm install express"   -To add dependencies in project
+"npm uninstall express"  -To remove the dependencies in project 
+
+
+Also we can initialize the project , if making new one then install the dependecies like express etc
+
+-npm init           ( provide the infomation of new project )
+-Look into the package.json file , then run various command to run them here 
+
+
+
+13. We can add default scripts to start the files 
+
+-npm install nodemon    -TO automatic restart the project after changes are detected  in .js file . 
+-npm install express
+-npm install nodemailer
+
+-nodemon reduces the work to again and again run the "npm start" command. 
+Need to give  it in "scripts" -  start property 
+
+Now we will not run the project by simple node command instead use the nodemon for that purpose .
+
+"For first time open the terminal and then npm start , and then nodemon will automatically manage the rest of the project "
+
+#Code snippet
+{
+  "name": "email_sender",
+  "version": "1.0.0",
+  "description": "Dummy learning project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"                                     //This is automatic restart if changes made in app.js
+    
+  },
+  "author": "Shivam Rai",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.22"
+  }
+}
+
+__________________________________________________________
+
+
+14. Now creating the mail service  : 
+  Just to allow the less secure app Google Updated method. To Goolge app password and a 16 digit code into the password field where ever required.
+  (REfer code)
+
+
+
+_______________________________________________________________________________________
+
+
+NOTES FOR WORKING WTIH REST APIs-------------
+
+-create the project
+=> npm init
+
+-install packages like  express , 
+=>npm install express nodemon body-parser dotenv mongoose
+
+Run the project using npm start app.js  or configure the nodemon in "scripts" to automatically fetch the changes in the file app.js
+
+Then open the teminal in current project and one time do "npm start"   , next time it will fetch changes and run automatically
+
+=>Now we are going to use express to create the server (previous done by http in node.js )
+
+Basically creating another folder routes to manage routes. Import the modules of express, router , etc.
+
+router.get("/" , (request , response ) =>{
+    response.send("Your Routing is working good ")
+});
+
+
+-Also in main app.js file we can use these routes by importing their modules/packages.
+app.use("/api/v1/courses/" , coursesRouter)
+
+
+
+-Installing Thunder client extension , its just like the post Man to make request to the apis (apis are the url which perform some CRUD operations )
+
+
+-Now creating the configuration file to keep all the constant together . " .env " and give the port number there.
+import this first.
+require("dotenv").config()
+-then use the constants  by "process.env.PORT"
+
+-Download the Offline Mongo DB as online is not working currently. in Nodejs (Refer mongo Db in one Video to download )
+
+-Now i have dowload the Version 6 , so its does not have mongo.exe file , so just download lower version of 5.0.5 .Again and install it. 
+
+(Otherwise temporary solution is to get CompassApp and mongosh shell ) and use it .
+
+
+-Now to Connect the DB MongoDB locally  . We have use the url like this in .env
+
+
+-Now crating model to store the data .
+
+{
+  "title":"JAva",
+  "content":"Good Language",
+  "videos":500,
+  "active":true
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
